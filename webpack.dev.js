@@ -3,13 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
+const webpackMerge = require('webpack-merge')
+const baseConfig = require('./webpack.base')
 
-module.exports = {
-  // entry: './src/index.js', // 入口文件
-  entry: {
-    index: './src/index.js',
-    login: './src/login.js'
-  },
+const devConfig = {
   output: {
     path: path.resolve(__dirname, './dist'),
     // 每次打包都会生成Chunks
@@ -56,6 +53,12 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader'] 
         // postcss-loader提取到postcss.config.js文件
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader' // 配置放到.babelrc
+        }
       }
     ],
     // plugins: [new HtmlWebpackPlugin()]
@@ -121,3 +124,5 @@ module.exports = {
 
     原理：先移除 在新增
 */
+
+module.exports = webpackMerge(baseConfig, devConfig)
