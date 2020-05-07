@@ -13,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     // 每次打包都会生成Chunks
     // filename: '[name]_[chunkhash:8].js' // 可以用来做版本管理
-    filename: '[name][contenthash:8].js'
+    filename: '[name][chunkhash:8].js'
     // hash：每次打包都会改变，每次都要重新生成文件
     // chunkhash：每个入口都会对应一个chunkhash，没有更改的文件不会被打包，
     // contenthash：？？
@@ -51,7 +51,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader', 'postcss-loader'] 
+        use: ['css-loader', 'less-loader', 'postcss-loader'] 
         // postcss-loader提取到postcss.config.js文件
       }
     ],
