@@ -12,4 +12,4 @@ image.classList.add('logo')
 const root = document.getElementById('root')
 root.append(image)
 
-document.write('hello webpack.hahahahha.. 我在这里等着你回来webpack5aaaaa')
+document.write('hello webpack.hahahahha.. 我在这里等着你回来awebpack5aaaaa')
