@@ -75,7 +75,7 @@ const devConfig = {
       title: '首页',
       inject: 'body',
       template: './src/index.html',
-      chunks: ['index'],
+      chunks: ['vendors_chunks', 'react_chunks', 'common_chunks', 'index'],
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
@@ -92,7 +92,7 @@ const devConfig = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   /*
     devtool: 
       source-map: 每个文件生成一个.map文件
@@ -110,6 +110,39 @@ const devConfig = {
     },
     hotOnly: true
     // 热模块替换
+  },
+  // 摇树
+  optimization: {
+    usedExports: true,
+    // splitChunks 代码分割
+    // 可以将第三库单独打包
+    // 也可以定义规则
+    splitChunks: {
+      chunks: 'all', // async all initial
+      name: 'vendors_chunks',
+      minSize: 30000,
+      // 还可以定义预加载: 加载完成之后，在网络空间时间内，加载它
+      // import ( /* webpackPreload: true */ 'ChartingLibrary)
+      cacheGroups: {
+        vender: {
+          test: /react|react-dom/,
+          name: 'react_chunks',
+          chunks: 'all',
+          priority: 0
+        },
+        commons:{
+          test:/[\\/]node_modules[\\/]/,
+          name:"commom_chunks",
+          chunks:"all",
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true//可设置是否重⽤用该chunk
+        }
+      }
+    }
   }
 } 
 // contenthash chunkhash hash 的区别

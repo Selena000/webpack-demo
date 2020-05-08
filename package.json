@@ -8,7 +8,9 @@
     "dev": "webpack-dev-server --config webpack.dev.js",
     "build": "npx webpack --config webpack.pro.js",
     "watch": "webpack --watch",
-    "server": "webpack-dev-server"
+    "server": "webpack-dev-server",
+    "base_dev": "webpack --config webpack.dev.js",
+    "base_build": "webpack --config webpack.pro.js"
   },
   "keywords": [],
   "author": "",

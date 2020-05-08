@@ -10,5 +10,5 @@ module.exports = {
     index: './src/index.js',
     login: './src/login.js'
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
 } 

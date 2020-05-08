@@ -42,6 +42,10 @@
 
 import React, { Component } from "react";
 import ReactDom from "react-dom";
+
+import { add } from './counter'
+
+add()
 class App extends Component {
   render() {
     return <div>hello world</div>
