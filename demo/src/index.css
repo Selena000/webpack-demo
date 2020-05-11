@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('webfont.woff2') format('woff2'),
+}
+body {
+  background: blue;
+  font-family: 'webfont';
+  font-size: 30px;
+}
+
+div:nth-of-type(odd) {
+  background: yellowgreen;
+}
